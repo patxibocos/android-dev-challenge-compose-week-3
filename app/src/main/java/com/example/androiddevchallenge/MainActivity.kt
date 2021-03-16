@@ -25,8 +25,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import com.example.androiddevchallenge.ui.screen.Home
 import com.example.androiddevchallenge.ui.screen.Login
-import com.example.androiddevchallenge.ui.screen.Welcome
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun MyApp() {
     Scaffold { paddingValues ->
-        Login(Modifier.padding(paddingValues), isSystemInDarkTheme())
+        Home(Modifier.padding(paddingValues), isSystemInDarkTheme())
     }
 }
 
@@ -53,7 +53,7 @@ fun MyApp() {
 fun WelcomePreview() {
     MyTheme {
         Scaffold {
-            Welcome()
+            Home()
         }
     }
 }
