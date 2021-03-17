@@ -20,11 +20,10 @@ import androidx.compose.ui.layout.AlignmentLine
 import androidx.compose.ui.layout.FirstBaseline
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 
 fun Modifier.firstBaselineToTop(
     firstBaselineToTop: Dp,
-    firstBaselineToBottom: Dp = 0.dp
+    firstBaselineToBottom: Dp
 ) = Modifier.layout { measurable, constraints ->
     val placeable = measurable.measure(constraints)
 

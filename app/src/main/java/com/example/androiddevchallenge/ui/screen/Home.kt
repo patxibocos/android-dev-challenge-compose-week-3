@@ -15,15 +15,22 @@
  */
 package com.example.androiddevchallenge.ui.screen
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -35,21 +42,26 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.data.Align
+import com.example.androiddevchallenge.data.Favorite
+import com.example.androiddevchallenge.data.Home
 import com.example.androiddevchallenge.ui.component.MySootheTextField
 import com.example.androiddevchallenge.ui.ext.firstBaselineToTop
+import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
-fun Home(modifier: Modifier = Modifier, darkTheme: Boolean = false) {
+fun Home(home: Home, modifier: Modifier = Modifier, darkTheme: Boolean = false) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .padding(start = 16.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         MySootheTextField(
             value = "",
             placeholderText = "Search",
             onValueChange = { },
-            modifier = Modifier.padding(top = 56.dp),
+            modifier = Modifier.padding(top = 56.dp, end = 16.dp),
             leadingIcon = {
                 Image(
                     painter = painterResource(id = if (darkTheme) R.drawable.ic_search_white else R.drawable.ic_search_black),
@@ -58,26 +70,75 @@ fun Home(modifier: Modifier = Modifier, darkTheme: Boolean = false) {
                 )
             }
         )
-        Text(
-            text = "FAVORITE COLLECTIONS",
-            style = MaterialTheme.typography.h2,
-            modifier = Modifier.firstBaselineToTop(40.dp, 8.dp)
-        )
-        Text(
-            text = "ALIGN YOUR BODY",
-            style = MaterialTheme.typography.h2,
-            modifier = Modifier.firstBaselineToTop(48.dp, 8.dp)
-        )
-        Text(
-            text = "ALIGN YOUR MIND",
-            style = MaterialTheme.typography.h2,
-            modifier = Modifier.firstBaselineToTop(48.dp, 8.dp)
+        FavoriteCollection(home.favorites)
+        AlignYourBody(home.bodyAligns)
+        AlignYourMind(home.mindAligns)
+    }
+}
+
+@Composable
+fun FavoriteCollection(favorites: List<Favorite>) {
+
+    @Composable
+    fun FavoritesRow(data: List<Favorite>, modifier: Modifier = Modifier) {
+        LazyRow(modifier = modifier.fillMaxWidth()) {
+            items(
+                items = data,
+                itemContent = { item ->
+                    FavoriteItem(text = item.name, imageUrl = item.imageUrl)
+                    Spacer(modifier = Modifier.width(if (data.last() == item) 16.dp else 8.dp))
+                }
+            )
+        }
+    }
+
+    Text(
+        text = "FAVORITE COLLECTIONS",
+        style = MaterialTheme.typography.h2,
+        modifier = Modifier.firstBaselineToTop(40.dp, 8.dp)
+    )
+    FavoritesRow(favorites.filterIndexed { index, _ -> index % 2 == 0 })
+    FavoritesRow(
+        favorites.filterIndexed { index, _ -> index % 2 != 0 },
+        modifier = Modifier.padding(top = 8.dp)
+    )
+}
+
+@Composable
+fun AlignYourBody(bodyAligns: List<Align>) {
+    Text(
+        text = "ALIGN YOUR BODY",
+        style = MaterialTheme.typography.h2,
+        modifier = Modifier.firstBaselineToTop(40.dp, 8.dp)
+    )
+    AlignRow(bodyAligns)
+}
+
+@Composable
+fun AlignYourMind(mindAligns: List<Align>) {
+    Text(
+        text = "ALIGN YOUR MIND",
+        style = MaterialTheme.typography.h2,
+        modifier = Modifier.firstBaselineToTop(40.dp, 8.dp)
+    )
+    AlignRow(mindAligns)
+}
+
+@Composable
+fun AlignRow(aligns: List<Align>) {
+    LazyRow(modifier = Modifier.fillMaxWidth()) {
+        items(
+            items = aligns,
+            itemContent = { item ->
+                AlignItem(text = item.name, imageUrl = item.imageUrl)
+                Spacer(modifier = Modifier.width(if (aligns.last() == item) 16.dp else 8.dp))
+            }
         )
     }
 }
 
 @Composable
-fun FavoriteItem(text: String, @DrawableRes drawableResId: Int) {
+fun FavoriteItem(text: String, imageUrl: String) {
     Surface(
         modifier = Modifier
             .size(192.dp, 56.dp)
@@ -86,11 +147,11 @@ fun FavoriteItem(text: String, @DrawableRes drawableResId: Int) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
+            CoilImage(
+                data = imageUrl,
                 modifier = Modifier
                     .fillMaxHeight()
                     .aspectRatio(1f),
-                painter = painterResource(id = drawableResId),
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
@@ -100,5 +161,25 @@ fun FavoriteItem(text: String, @DrawableRes drawableResId: Int) {
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
         }
+    }
+}
+
+@Composable
+fun AlignItem(text: String, imageUrl: String) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        CoilImage(
+            data = imageUrl,
+            modifier = Modifier
+                .size(88.dp)
+                .clip(CircleShape),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+        )
+        Text(
+            text = text,
+            style = MaterialTheme.typography.h3,
+            modifier = Modifier.firstBaselineToTop(24.dp, 8.dp),
+            maxLines = 1
+        )
     }
 }
