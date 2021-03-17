@@ -21,7 +21,7 @@ import androidx.compose.ui.layout.FirstBaseline
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.unit.Dp
 
-fun Modifier.firstBaselineToTop(
+fun Modifier.firstBaselineToTopAndBottom(
     firstBaselineToTop: Dp,
     firstBaselineToBottom: Dp
 ) = Modifier.layout { measurable, constraints ->

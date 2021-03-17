@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.component.MySootheButton
 import com.example.androiddevchallenge.ui.component.MySootheTextField
-import com.example.androiddevchallenge.ui.ext.firstBaselineToTop
+import com.example.androiddevchallenge.ui.ext.firstBaselineToTopAndBottom
 
 @Composable
 fun Login(modifier: Modifier, darkTheme: Boolean, onLoginClick: () -> Unit) {
@@ -57,7 +57,7 @@ fun Login(modifier: Modifier, darkTheme: Boolean, onLoginClick: () -> Unit) {
             Text(
                 text = "LOG IN",
                 style = MaterialTheme.typography.h1,
-                modifier = Modifier.firstBaselineToTop(200.dp, 32.dp),
+                modifier = Modifier.firstBaselineToTopAndBottom(200.dp, 32.dp),
                 color = MaterialTheme.colors.onBackground,
                 textAlign = TextAlign.Left
             )

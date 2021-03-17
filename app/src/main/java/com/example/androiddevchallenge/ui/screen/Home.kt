@@ -47,7 +47,7 @@ import com.example.androiddevchallenge.data.Align
 import com.example.androiddevchallenge.data.Favorite
 import com.example.androiddevchallenge.data.Home
 import com.example.androiddevchallenge.ui.component.MySootheTextField
-import com.example.androiddevchallenge.ui.ext.firstBaselineToTop
+import com.example.androiddevchallenge.ui.ext.firstBaselineToTopAndBottom
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
@@ -97,7 +97,7 @@ fun FavoriteCollection(favorites: List<Favorite>) {
     Text(
         text = "FAVORITE COLLECTIONS",
         style = MaterialTheme.typography.h2,
-        modifier = Modifier.firstBaselineToTop(40.dp, 8.dp)
+        modifier = Modifier.firstBaselineToTopAndBottom(40.dp, 8.dp)
     )
     FavoritesRow(favorites.filterIndexed { index, _ -> index % 2 == 0 })
     FavoritesRow(
@@ -111,7 +111,7 @@ fun AlignYourBody(bodyAligns: List<Align>) {
     Text(
         text = "ALIGN YOUR BODY",
         style = MaterialTheme.typography.h2,
-        modifier = Modifier.firstBaselineToTop(48.dp, 8.dp)
+        modifier = Modifier.firstBaselineToTopAndBottom(48.dp, 8.dp)
     )
     AlignRow(bodyAligns)
 }
@@ -121,7 +121,7 @@ fun AlignYourMind(mindAligns: List<Align>) {
     Text(
         text = "ALIGN YOUR MIND",
         style = MaterialTheme.typography.h2,
-        modifier = Modifier.firstBaselineToTop(40.dp, 8.dp)
+        modifier = Modifier.firstBaselineToTopAndBottom(40.dp, 8.dp)
     )
     AlignRow(mindAligns)
 }
@@ -180,7 +180,7 @@ fun AlignItem(text: String, imageUrl: String) {
         Text(
             text = text,
             style = MaterialTheme.typography.h3,
-            modifier = Modifier.firstBaselineToTop(24.dp, 8.dp),
+            modifier = Modifier.firstBaselineToTopAndBottom(24.dp, 8.dp),
             maxLines = 1
         )
     }
