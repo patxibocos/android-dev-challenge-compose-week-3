@@ -51,7 +51,7 @@ import com.example.androiddevchallenge.ui.ext.firstBaselineToTop
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
-fun Home(home: Home, modifier: Modifier = Modifier, darkTheme: Boolean = false) {
+fun Home(home: Home, modifier: Modifier, darkTheme: Boolean) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -102,7 +102,7 @@ fun FavoriteCollection(favorites: List<Favorite>) {
     FavoritesRow(favorites.filterIndexed { index, _ -> index % 2 == 0 })
     FavoritesRow(
         favorites.filterIndexed { index, _ -> index % 2 != 0 },
-        modifier = Modifier.padding(top = 0.dp)
+        modifier = Modifier.padding(top = 8.dp)
     )
 }
 

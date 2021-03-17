@@ -40,7 +40,7 @@ import com.example.androiddevchallenge.ui.component.MySootheTextField
 import com.example.androiddevchallenge.ui.ext.firstBaselineToTop
 
 @Composable
-fun Login(modifier: Modifier = Modifier, darkTheme: Boolean = false) {
+fun Login(modifier: Modifier, darkTheme: Boolean, onLoginClick: () -> Unit) {
     Box(
         modifier = modifier.fillMaxSize(),
     ) {
@@ -74,7 +74,7 @@ fun Login(modifier: Modifier = Modifier, darkTheme: Boolean = false) {
             )
             MySootheButton(
                 text = "LOG IN",
-                onClick = { },
+                onClick = onLoginClick,
                 modifier = Modifier.padding(top = 8.dp)
             )
             Text(

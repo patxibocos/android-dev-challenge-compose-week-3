@@ -32,7 +32,7 @@ import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.component.MySootheButton
 
 @Composable
-fun Welcome(modifier: Modifier = Modifier, darkTheme: Boolean = false) {
+fun Welcome(modifier: Modifier, darkTheme: Boolean, onLoginClick: () -> Unit) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -58,7 +58,7 @@ fun Welcome(modifier: Modifier = Modifier, darkTheme: Boolean = false) {
             )
             MySootheButton(
                 text = "LOG IN",
-                onClick = { },
+                onClick = onLoginClick,
                 modifier = Modifier.padding(top = 8.dp),
                 backgroundColor = MaterialTheme.colors.secondary
             )
