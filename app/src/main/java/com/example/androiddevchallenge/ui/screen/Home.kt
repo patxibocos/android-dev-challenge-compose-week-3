@@ -15,7 +15,6 @@
  */
 package com.example.androiddevchallenge.ui.screen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,6 +30,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -38,8 +38,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.Align
@@ -63,10 +64,11 @@ fun Home(home: Home, modifier: Modifier = Modifier, darkTheme: Boolean = false) 
             onValueChange = { },
             modifier = Modifier.padding(top = 56.dp, end = 16.dp),
             leadingIcon = {
-                Image(
-                    painter = painterResource(id = if (darkTheme) R.drawable.ic_search_white else R.drawable.ic_search_black),
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = if (darkTheme) R.drawable.ic_search_white else R.drawable.ic_search_black),
                     contentDescription = "Search",
-                    modifier = Modifier.size(18.dp)
+                    modifier = Modifier.size(18.dp),
+                    tint = MaterialTheme.colors.onSurface
                 )
             }
         )
@@ -100,7 +102,7 @@ fun FavoriteCollection(favorites: List<Favorite>) {
     FavoritesRow(favorites.filterIndexed { index, _ -> index % 2 == 0 })
     FavoritesRow(
         favorites.filterIndexed { index, _ -> index % 2 != 0 },
-        modifier = Modifier.padding(top = 8.dp)
+        modifier = Modifier.padding(top = 0.dp)
     )
 }
 
@@ -109,7 +111,7 @@ fun AlignYourBody(bodyAligns: List<Align>) {
     Text(
         text = "ALIGN YOUR BODY",
         style = MaterialTheme.typography.h2,
-        modifier = Modifier.firstBaselineToTop(40.dp, 8.dp)
+        modifier = Modifier.firstBaselineToTop(48.dp, 8.dp)
     )
     AlignRow(bodyAligns)
 }

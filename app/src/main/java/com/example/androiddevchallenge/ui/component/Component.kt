@@ -63,7 +63,6 @@ fun MySootheTextField(
                 text = placeholderText,
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.onSurface,
-//                modifier = Modifier.padding(horizontal = 8.dp),
             )
         },
         modifier = modifier

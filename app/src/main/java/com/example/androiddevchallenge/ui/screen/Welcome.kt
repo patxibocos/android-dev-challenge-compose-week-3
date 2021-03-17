@@ -24,8 +24,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.component.MySootheButton
@@ -38,7 +39,7 @@ fun Welcome(modifier: Modifier = Modifier, darkTheme: Boolean = false) {
     ) {
         Image(
             modifier = Modifier.fillMaxSize(),
-            painter = painterResource(id = if (darkTheme) R.drawable.ic_dark_welcome else R.drawable.ic_light_welcome),
+            imageVector = ImageVector.vectorResource(id = if (darkTheme) R.drawable.ic_dark_welcome else R.drawable.ic_light_welcome),
             contentDescription = "Welcome background image",
             contentScale = ContentScale.Crop
         )
@@ -47,7 +48,7 @@ fun Welcome(modifier: Modifier = Modifier, darkTheme: Boolean = false) {
             modifier = Modifier.padding(start = 16.dp, end = 16.dp)
         ) {
             Image(
-                painter = painterResource(id = if (darkTheme) R.drawable.ic_dark_logo else R.drawable.ic_light_logo),
+                imageVector = ImageVector.vectorResource(id = if (darkTheme) R.drawable.ic_dark_logo else R.drawable.ic_light_logo),
                 contentDescription = "MySoothe logo",
             )
             MySootheButton(
