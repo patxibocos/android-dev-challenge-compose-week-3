@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.data.home
 import com.example.androiddevchallenge.ui.navigation.MySootheBottomBar
@@ -38,7 +37,7 @@ import com.example.androiddevchallenge.ui.screen.Home
 import com.example.androiddevchallenge.ui.screen.Login
 import com.example.androiddevchallenge.ui.screen.Welcome
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import dev.chrisbanes.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.ProvideWindowInsets
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

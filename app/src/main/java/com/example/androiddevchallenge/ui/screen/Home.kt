@@ -15,6 +15,7 @@
  */
 package com.example.androiddevchallenge.ui.screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -48,7 +49,7 @@ import com.example.androiddevchallenge.data.Favorite
 import com.example.androiddevchallenge.data.Home
 import com.example.androiddevchallenge.ui.component.MySootheTextField
 import com.example.androiddevchallenge.ui.ext.firstBaselineToTopAndBottom
-import dev.chrisbanes.accompanist.coil.CoilImage
+import com.google.accompanist.coil.rememberCoilPainter
 
 @Composable
 fun Home(home: Home, modifier: Modifier, darkTheme: Boolean) {
@@ -149,8 +150,8 @@ fun FavoriteItem(text: String, imageUrl: String) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            CoilImage(
-                data = imageUrl,
+            Image(
+                painter = rememberCoilPainter(imageUrl),
                 modifier = Modifier
                     .fillMaxHeight()
                     .aspectRatio(1f),
@@ -169,8 +170,8 @@ fun FavoriteItem(text: String, imageUrl: String) {
 @Composable
 fun AlignItem(text: String, imageUrl: String) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        CoilImage(
-            data = imageUrl,
+        Image(
+            painter = rememberCoilPainter(imageUrl),
             modifier = Modifier
                 .size(88.dp)
                 .clip(CircleShape),

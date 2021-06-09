@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.Dp
 fun Modifier.firstBaselineToTopAndBottom(
     firstBaselineToTop: Dp,
     firstBaselineToBottom: Dp
-) = Modifier.layout { measurable, constraints ->
+) = this.layout { measurable, constraints ->
     val placeable = measurable.measure(constraints)
 
     // Check the composable has a first baseline

@@ -33,11 +33,9 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.KEY_ROUTE
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.androiddevchallenge.R
-import dev.chrisbanes.accompanist.insets.navigationBarsPadding
-import java.util.Locale
+import com.google.accompanist.insets.navigationBarsPadding
 
 object Routes {
     const val Welcome = "welcome"
@@ -48,8 +46,8 @@ object Routes {
 @Composable
 fun NavHostController.isAtHome(): Boolean {
     val navBackStackEntry: NavBackStackEntry? by this.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.arguments?.getString(KEY_ROUTE)
-    return currentRoute == Routes.Home
+    val currentRoute = navBackStackEntry?.destination
+    return currentRoute?.route == Routes.Home
 }
 
 @Composable
@@ -87,7 +85,7 @@ fun MySootheBottomBar(darkTheme: Boolean) {
             },
             label = {
                 Text(
-                    text = text.toUpperCase(Locale.ROOT),
+                    text = text.uppercase(),
                     style = MaterialTheme.typography.caption
                 )
             }
